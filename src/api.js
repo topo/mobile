@@ -1,5 +1,5 @@
 
-const apiUrl = "http://topolitique.ch/beta/wp-json/wp/v2/"
+const apiUrl = "https://topolitique.ch/beta/wp-json/wp/v2/"
 const postsUrl = `${apiUrl}posts/`
 
 

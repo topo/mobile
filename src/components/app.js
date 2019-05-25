@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import raf from 'raf'
-
 import { Link } from './ui'
 
 // Stolen from https://gist.github.com/gre/1650294

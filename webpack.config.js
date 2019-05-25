@@ -1,8 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-var ManifestPlugin = require('webpack-manifest-plugin');
-
 
 const manifest = {
   name: "Topolitique",
