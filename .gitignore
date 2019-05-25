@@ -1,0 +1,4 @@
+*.png
+*.svg
+*.bundle.js
+node_modules/
