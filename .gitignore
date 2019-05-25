@@ -1,5 +1,6 @@
-*.png
-*.svg
-*.bundle.js
+/*.png
+/*.svg
+/*.bundle.js
+/*.json
 index.html
 node_modules/

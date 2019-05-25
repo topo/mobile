@@ -1,5 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+var ManifestPlugin = require('webpack-manifest-plugin');
+
+
+const manifest = {
+  name: "Topolitique",
+  short_name:"TOPO",
+  description:"Média étudiant de l'Université de Genève",
+  background_color:"#C30E00",
+  crossorigin:"use-credentials",
+  
+}
 
 module.exports = {
   entry: './src/index.js',
@@ -46,6 +58,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template:path.join(__dirname, 'src', 'index.html'),
       filename:path.join(__dirname, 'index.html')
-    })
+    }),
+    new WebpackPwaManifest(manifest)
   ]
 }
