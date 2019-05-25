@@ -3,7 +3,7 @@
   "short_name": "TOPO",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": ".",
+  "start_url": "/index.html",
   "description": "Média étudiant de l'Université de Genève",
   "background_color": "#C30E00",
   "theme_color": "#C30E00",
