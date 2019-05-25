@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 
 import { switchToPost, SWITCH_MENU } from '../data'
 
-import nextImage from '../assets/next.png';
-import glassesIcon from '../assets/glasses.svg';
-
 
 const Hud = ({ switchToPost, switchMenu, isMenu, post, posts }) => {
 
@@ -23,7 +20,7 @@ const Hud = ({ switchToPost, switchMenu, isMenu, post, posts }) => {
     <div class="hud">
       <div class="watermark" onClick={switchMenu}>
         <div class="logo">
-          <img src={glassesIcon} />
+          <img src="assets/glasses.svg" />
         </div>
         <div class="brand">
           <span>Topolitique.ch</span>
@@ -34,7 +31,7 @@ const Hud = ({ switchToPost, switchMenu, isMenu, post, posts }) => {
         <a class="nav-left">
         </a>
         <a className="nav-next" onClick={nextPost}>
-          <img src={nextImage} />
+          <img src="assets/next.png" />
         </a>
       </div>
 

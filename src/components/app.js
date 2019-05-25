@@ -14,7 +14,7 @@ function updateScroll(id) {
     const scrollDifference = targetOffset-currentOffset;
 
     var scrollPosition = currentOffset;
-    let increment = .01;
+    let increment = .02;
     var position = 0; //percentage (0 to 1)
 
     // Animation loop
@@ -32,8 +32,8 @@ function updateScroll(id) {
 
       } else {
         cancelAnimationFrame(animation)
-        window.scrollTo(0,targetOffset)
-        currentOffset = targetOffset; // dunno why, but this has to be updated
+        //window.scrollTo(0,targetOffset)
+        currentOffset = scrollPosition; // dunno why, but this has to be updated
       }
     }
   }

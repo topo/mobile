@@ -1,0 +1,22 @@
+{
+  "name": "Topolitique",
+  "short_name": "TOPO",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "Média étudiant de l'Université de Genève",
+  "background_color": "#C30E00",
+  "theme_color": "#C30E00",
+  "icons": [
+    {
+      "src": "assets/icon_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

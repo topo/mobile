@@ -1,24 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
-const manifest = {
-  name: "Topolitique",
-  short_name:"TOPO",
-  description:"Média étudiant de l'Université de Genève",
-  background_color:"#C30E00",
-  crossorigin:"use-credentials",
-
-}
 
 module.exports = {
   entry: './src/index.js',
   output:{
-    path:path.resolve(__dirname),
-    filename:'[chunkhash].bundle.js',
+    path:path.resolve(__dirname, 'build'),
+    filename:'bundle.js',
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname),
     compress: true,
     port: 9001
   },
@@ -40,15 +33,6 @@ module.exports = {
           "sass-loader"
         ]
       },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {},
-          },
-        ],
-      },
     ],
 
   },
@@ -57,6 +41,15 @@ module.exports = {
       template:path.join(__dirname, 'src', 'index.html'),
       filename:path.join(__dirname, 'index.html')
     }),
-    new WebpackPwaManifest(manifest)
+    new SWPrecacheWebpackPlugin(
+      {
+        cacheId: 'topo-mobile',
+        dontCacheBustUrlsMatching: /\.\w{8}\./,
+        filename: 'service-worker.js',
+        minify: false,
+        navigateFallback: path.resolve(__dirname,'index.html'),
+        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+      }
+    ),
   ]
 }
