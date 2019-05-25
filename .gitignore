@@ -1,6 +1,7 @@
 /*.png
 /*.svg
 /*.bundle.js
-/*.json
+/manifest.*.json
+/manifest.json
 index.html
 node_modules/

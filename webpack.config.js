@@ -10,7 +10,7 @@ const manifest = {
   description:"Média étudiant de l'Université de Genève",
   background_color:"#C30E00",
   crossorigin:"use-credentials",
-  
+
 }
 
 module.exports = {
@@ -37,9 +37,9 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          "style-loader", // creates style nodes from JS strings
-          "css-loader", // translates CSS into CommonJS
-          "sass-loader" // compiles Sass to CSS, using Node Sass by default
+          "style-loader",
+          "css-loader",
+          "sass-loader"
         ]
       },
       {
