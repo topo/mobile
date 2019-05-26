@@ -4,6 +4,7 @@ export const UPDATE_CATEGORIES = "UPDATE_CATEGORIES"
 export const SWITCH_TO_POST = "SWITCH_TO_POST"
 export const SWITCH_TO_CATEGORY = "SWITCH_TO_CATEGORY"
 export const SWITCH_MENU = "SWITCH_MENU"
+export const SET_TIMER = "SET_TIMER";
 
 export const updatePosts = (posts) => {
   return {
@@ -32,12 +33,20 @@ export const switchToPost = (id) => {
   }
 }
 
+export const setTimer = (timer) => {
+  return {
+    type:SET_TIMER,
+    timer
+  }
+}
+
 const initial = {
   isMenu:false,
   category:'Coucou',
   post:0,
   posts:[],
   categories:[],
+  timer:0
 }
 
 export const reducer = (state = initial, action) => {
@@ -74,6 +83,12 @@ export const reducer = (state = initial, action) => {
       return {
         ...state,
         isMenu: (oldMenu) ? false : true
+      }
+
+    case SET_TIMER:
+      return {
+        ...state,
+        timer:action.timer
       }
 
     default:

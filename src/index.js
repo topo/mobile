@@ -9,7 +9,8 @@ import {
   reducer,
   updatePosts,
   updateCategories,
-  switchToPost
+  switchToPost,
+  setTimer
 } from './data'
 import {
   fetchPosts,
@@ -47,11 +48,11 @@ fetchCategories().then(categories => {
   })
 })
 
-
+// Loop next story
 setInterval(function () {
+  let { timer, post } = theStore.getState();
 
   function nextPost() {
-    let { post } = theStore.getState();
     let next = post + 1;
     if (document.getElementById('post-'+next)) {
       theStore.dispatch(switchToPost(next));
@@ -60,10 +61,14 @@ setInterval(function () {
     }
   }
 
-  console.log('SUIIIVAAAAAANT!!!');
-  nextPost()
+  if (timer < 4) {
+    theStore.dispatch(setTimer( timer + 1 ));
+  } else {
+    theStore.dispatch(setTimer( 0 ));
+    nextPost()
+  }
 
-}, 8000);
+}, 1000);
 
 render(
   <Provider store={theStore}>

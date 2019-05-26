@@ -1,14 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { switchToPost, SWITCH_MENU } from '../data'
+import { setTimer, switchToPost, SWITCH_MENU } from '../data'
 
 import { fetchPosts } from '../api'
 
 import Menu from './menu'
 import Brand from './brand'
+import Progress from './progress'
 
-const Hud = ({ switchToPost, switchMenu, post, category }) => {
+const Hud = ({ setTimer, switchToPost, switchMenu, post, category }) => {
 
   function nextPost(e) {
     let next = post + 1;
@@ -17,6 +18,7 @@ const Hud = ({ switchToPost, switchMenu, post, category }) => {
     } else {
       switchToPost(0);
     }
+    setTimer(0);
   }
 
   return (
@@ -36,6 +38,7 @@ const Hud = ({ switchToPost, switchMenu, post, category }) => {
       </div>
 
       <Menu />
+      <Progress />
     </div>
   )
 }
@@ -48,6 +51,7 @@ export default connect(
   },
   dispatch => {
     return {
+      setTimer: (timer) => {dispatch(setTimer(timer))},
       switchToPost: (id) => {dispatch(switchToPost(id))},
       switchMenu: () => {dispatch({type:SWITCH_MENU})}
     }
