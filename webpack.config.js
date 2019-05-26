@@ -8,7 +8,7 @@ module.exports = {
   entry: './src/index.js',
   output:{
     path:path.resolve(__dirname, 'build'),
-    filename:'bundle.js',
+    filename:'bundle-[hash].js',
   },
   devServer: {
     contentBase: path.join(__dirname),

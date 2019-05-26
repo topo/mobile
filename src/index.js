@@ -7,11 +7,16 @@ import Turbolinks from 'turbolinks'
 
 import {
   reducer,
-  updatePosts
+  updatePosts,
+  updateCategories
 } from './data'
-import { fetchPosts } from './api'
+import {
+  fetchPosts,
+  fetchCategories
+} from './api'
 
-import './assets/style.scss'
+import './style/main.scss'
+
 import App from './components/app'
 import Hud from './components/hud'
 
@@ -30,12 +35,15 @@ if ('serviceWorker' in navigator) {
     );
 }
 
-Turbolinks.start()
+Turbolinks.start();
 
 const theStore = createStore(reducer, undefined, applyMiddleware(thunkMiddleware))
 
-fetchPosts().then(data => {
-  theStore.dispatch(updatePosts(data))
+fetchCategories().then(categories => {
+  theStore.dispatch(updateCategories(categories))
+  fetchPosts({categories}).then(posts => {
+    theStore.dispatch(updatePosts(posts))
+  })
 })
 
 render(

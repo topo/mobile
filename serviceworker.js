@@ -10,9 +10,7 @@ self.addEventListener('install', function(event) {
           '/assets/next.png',
           '/assets/square_192x192.png',
           '/build/bundle.js',
-          '/index.html',
-          '/offline.html'
-        ]
+          '/index.html'        ]
       );
     })
   );

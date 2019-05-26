@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import he from 'he'
 
 import { Link } from './ui'
 
 // Stolen from https://gist.github.com/gre/1650294
 function easeOutCubic (t) { return (--t)*t*t+1 }
 
+// Animate scroll
 function updateScroll(id) {
   let el = document.getElementById(id);
   if (el) {
@@ -61,12 +63,12 @@ const PostsContainer = ({ posts, activePost }) => {
 
         <div className="post-container">
           <Link className="post-content" href={post.link}>
-            <h2 class="kicker">{post.meta.kicker||null}</h2>
+            <h2 class="kicker">{he.decode(post.meta.kicker||'')}</h2>
             <br />
-            <h1 class="title">{post.title.rendered}</h1>
+            <h1 class="title">{he.decode(post.title.rendered)}</h1>
             <p class="description">
               <span
-                dangerouslySetInnerHTML={{__html: post.excerpt.rendered||null}}
+                dangerouslySetInnerHTML={{__html: he.decode(post.excerpt.rendered||'')}}
               />
               {authors}
             </p>

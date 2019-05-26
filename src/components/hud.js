@@ -3,12 +3,14 @@ import { connect } from 'react-redux'
 
 import { switchToPost, SWITCH_MENU } from '../data'
 
+import { fetchPosts } from '../api'
 
-const Hud = ({ switchToPost, switchMenu, isMenu, post, posts }) => {
+import Menu from './menu'
+
+const Hud = ({ switchToPost, switchMenu, post, category }) => {
 
   function nextPost(e) {
     let next = post + 1;
-    console.log('Next post',next);
     if (document.getElementById('post-'+next)) {
       switchToPost(next);
     } else {
@@ -35,22 +37,11 @@ const Hud = ({ switchToPost, switchMenu, isMenu, post, posts }) => {
         </a>
       </div>
 
-      <div className="message">
-        Message
+      <div className="message" onClick={switchMenu}>
+        {category}
       </div>
 
-      <div id="menu" className={(isMenu) ? 'active' : ''}>
-        <div class="menu-container">
-          <div class="menu-title">
-            Sections
-          </div>
-
-          <a class="menu-link" href="#">
-            [Index]
-          </a>
-          <a class="menu-link">Link</a>
-        </div>
-      </div>
+      <Menu />
     </div>
   )
 }
@@ -58,8 +49,7 @@ export default connect(
   state => {
     return {
       post:state.post,
-      posts:state.posts,
-      isMenu:state.isMenu
+      category:state.category
     }
   },
   dispatch => {
