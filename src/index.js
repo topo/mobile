@@ -8,7 +8,8 @@ import Turbolinks from 'turbolinks'
 import {
   reducer,
   updatePosts,
-  updateCategories
+  updateCategories,
+  switchToPost
 } from './data'
 import {
   fetchPosts,
@@ -45,6 +46,24 @@ fetchCategories().then(categories => {
     theStore.dispatch(updatePosts(posts))
   })
 })
+
+
+setInterval(function () {
+
+  function nextPost() {
+    let { post } = theStore.getState();
+    let next = post + 1;
+    if (document.getElementById('post-'+next)) {
+      theStore.dispatch(switchToPost(next));
+    } else {
+      theStore.dispatch(switchToPost(0));
+    }
+  }
+
+  console.log('SUIIIVAAAAAANT!!!');
+  nextPost()
+
+}, 8000);
 
 render(
   <Provider store={theStore}>

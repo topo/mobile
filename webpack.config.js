@@ -1,13 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
-var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
+const isDevServer = process.argv[1].indexOf('webpack-dev-server') !== -1;
 
 module.exports = {
   entry: './src/index.js',
   output:{
-    path:path.resolve(__dirname, 'build'),
+    path:(isDevServer) ? path.resolve(__dirname) : path.resolve(__dirname, 'build'),
     filename:'bundle-[hash].js',
   },
   devServer: {
@@ -39,17 +39,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template:path.join(__dirname, 'src', 'index.html'),
-      filename:path.join(__dirname, 'index.html')
+      filename:path.join(__dirname, 'index.html'),
+      alwaysWriteToDisk: true
     }),
-    new SWPrecacheWebpackPlugin(
-      {
-        cacheId: 'topo-mobile',
-        dontCacheBustUrlsMatching: /\.\w{8}\./,
-        filename: 'service-worker.js',
-        minify: false,
-        navigateFallback: path.resolve(__dirname,'index.html'),
-        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-      }
-    ),
+    new HtmlWebpackHarddiskPlugin()
   ]
 }

@@ -5,4 +5,8 @@ guidelines to deliver an experience as close as a native app as
 possible,  while being easy to maintain and update.
 
 This is a React version, that uses the power of the Wordpress REST API,
-but it is adapted from a php version at <https://topolitique.ch/beta/m/>
+but it is adapted from a php version at
+<https://topolitique.ch/beta/m/>.
+
+To check out the latest version, go to this link
+<https://mobile.the-duck.now.sh> 

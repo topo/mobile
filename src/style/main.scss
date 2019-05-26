@@ -1,8 +1,9 @@
 /*
-  Mobile style
+  Mobile PWA style
   ----
-  This is only used by the mobile.php file
 */
+@import "colours";
+
 /* Standards */
 * {
   margin:0px;
@@ -17,6 +18,7 @@ html, body, #root {
   height:100%;
   -webkit-overflow-scrolling: touch;
   font-family: "IBM Plex Sans", Helvetica, sans-serif;
+  background: $background;
 }
 
 a {
@@ -92,33 +94,62 @@ a {
   right:12pt;
   border-radius: 2pt;
   overflow: hidden;
-  box-shadow: 0pt 0pt 5pt 2pt rgba(50,50,50,0.2);
 }
 .watermark .logo {
+  position: relative;
   width:72pt;
   height:32pt;
   padding-top:9pt;
   padding-bottom:4pt;
   padding-left:9pt;
   padding-right:9pt;
-  background-color:#C30E00;
+  border-radius: 0pt;
+  box-shadow: none;
+  background-color:$brand_red;
+  transition: all .4s;
 }
 .watermark .logo svg {
   width:inherit;
   height:inherit;
+  z-index: 145;
 }
 .watermark .brand {
+  position: relative;
   padding-top:2pt;
   padding-bottom:2pt;
-  background:#BB0D00;
+  max-height:400pt;
   color:white;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 8pt;
   text-align: center;
   letter-spacing: 0.1em;
+  transition: all .35s;
 }
-
+.watermark .brand .background {
+  position:absolute;
+  top:0;
+  right:0;
+  width: 100%;
+  height:100%;
+  background:$brand_red_dark;
+  transition: width .4s;
+  z-index:-2;
+}
+.watermark.menu {
+  box-shadow: none;
+}
+.watermark.menu .logo {
+  padding-bottom:9pt;
+  border-radius: 2pt;
+}
+.watermark.menu .brand {
+  max-height: 0pt;
+  padding:0pt;
+}
+.watermark.menu .brand .background {
+  width: 0%;
+}
 /* Top left - label */
 .message {
   cursor:pointer;
@@ -128,9 +159,9 @@ a {
   font-size: 10pt;
   font-weight: 500;
   padding:4pt;
-  border-radius: 2pt;
+  border-radius: 0pt;
   background: white;
-  color:#BB0D00;
+  color:$brand_red_dark;
   box-shadow: 0pt 0pt 5pt 2pt rgba(50,50,50,0.1);
 }
 
@@ -149,9 +180,28 @@ a {
 #menu.active {
   height:100%
 }
+#menu .header-container {
+  margin-top:12pt;
+  margin-left:12pt;
+  margin-right:12pt;
+  padding:0pt;
+  overflow: hidden;
+  transition: padding .6s;
+}
+#menu.active .header-container {
+  padding-top:6pt;
+  padding-bottom:6pt;
+}
+.header-container button {
+  margin-right: 4pt;
+  display: block;
+  border-style: none;
+  float:left;
+  background: transparent;
+  outline: none;
+}
 .menu-container {
-  margin:12pt;
-  margin-top:60pt;
+  margin:16pt;
 }
 .menu-container ul, .menu-container li {
   list-style-type: none;
@@ -160,12 +210,12 @@ a {
   display: block;
   border-style: solid;
   border-width: 0pt;
-  border-bottom-width: 2pt;
-  border-color: #C30E00;
+  border-bottom-width: 0.5pt;
+  border-color: $brand_red;
   padding-bottom:3pt;
   font-size: 18pt;
   font-weight: 500;
-  color:#C30E00;
+  color:$brand_red;
 }
 .menu-link {
   display: block;
@@ -200,14 +250,14 @@ a {
   width: 100%;
   height:100%;
   position: relative;
-  background:linear-gradient(0deg, rgba(50,0,80,0.5), rgba(0,0,0,0));
+  background:linear-gradient(0deg, rgba(30,0,60,0.7), rgba(0,0,0,0));
   z-index:100;
 }
 .post-content {
   padding-left:24pt;
   padding-right:24pt;
   position: absolute;
-  bottom:24%;
+  bottom:16%;
   overflow: hidden;
 }
 .title {
@@ -221,6 +271,8 @@ a {
   text-shadow: 2px 2px 8px rgba(40,40,40,0.6);
   color:white;
   text-decoration: none;
+  opacity: .3;
+  transition: all .4s .2s;
 }
 .kicker {
   font-size: 10pt;
@@ -229,13 +281,15 @@ a {
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;  -webkit-box-decoration-break: clone;
 
-  box-shadow: 3pt 0 0 #C30E00, -3pt 0 0 #C30E00;
-  background:#C30E00;
+  box-shadow: 3pt 0 0 $brand_red, -3pt 0 0 $brand_red;
+  background:$brand_red;
   color:white;
   font-weight: 500;
   letter-spacing: 0.1rem;
   text-decoration: none;
   text-transform: uppercase;
+  opacity: .5;
+  transition: all .3s .2s;
 }
 .description {
   font-size: 10pt;
@@ -245,9 +299,8 @@ a {
   color:white;
   text-shadow: 2px 2px 5px rgba(40,40,40,0.4);
   text-decoration: none;
-  max-height:0px;
-  transition-timing-function: ease-out;
-  transition: max-height 2s .5s;
+  opacity: .2;
+  transition: all .5s .3s;
 }
 
 .author-image {
@@ -274,15 +327,21 @@ a {
   height:256px;
   flex:1;
   min-width: 375px;
-  background:linear-gradient(#BB0D00, #C30E00);
+  background:linear-gradient($brand_red_dark, $brand_red);
 }
 
 /* Transitions */
 .post.active {
 
 }
+.post.active .kicker {
+  opacity: 1;
+}
+.post.active .title {
+  opacity: 1;
+}
 .post.active .description {
-  max-height:500px;
+  opacity: 1;
 }
 
 

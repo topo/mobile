@@ -37,7 +37,7 @@ const initial = {
   category:'Coucou',
   post:0,
   posts:[],
-  categories:[]
+  categories:[],
 }
 
 export const reducer = (state = initial, action) => {

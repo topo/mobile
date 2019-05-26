@@ -44,6 +44,7 @@ function updateScroll(id) {
 const PostsContainer = ({ posts, activePost }) => {
 
   return posts.map((post, index) => {
+
     let id = `post-${index}`
     let authors = post.coauthors.map(author => (
       <>
@@ -62,7 +63,7 @@ const PostsContainer = ({ posts, activePost }) => {
         style={{backgroundImage:`url(${post.image})`}}>
 
         <div className="post-container">
-          <Link className="post-content" href={post.link}>
+          <a className="post-content" href={post.link}>
             <h2 class="kicker">{he.decode(post.meta.kicker||'')}</h2>
             <br />
             <h1 class="title">{he.decode(post.title.rendered)}</h1>
@@ -72,7 +73,7 @@ const PostsContainer = ({ posts, activePost }) => {
               />
               {authors}
             </p>
-          </Link>
+          </a>
         </div>
 
       </div>

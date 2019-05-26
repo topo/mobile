@@ -6,6 +6,7 @@ import { switchToPost, SWITCH_MENU } from '../data'
 import { fetchPosts } from '../api'
 
 import Menu from './menu'
+import Brand from './brand'
 
 const Hud = ({ switchToPost, switchMenu, post, category }) => {
 
@@ -20,15 +21,6 @@ const Hud = ({ switchToPost, switchMenu, post, category }) => {
 
   return (
     <div class="hud">
-      <div class="watermark" onClick={switchMenu}>
-        <div class="logo">
-          <img src="assets/glasses.svg" />
-        </div>
-        <div class="brand">
-          <span>Topolitique.ch</span>
-        </div>
-      </div>
-
       <div class="navigation">
         <a class="nav-left">
         </a>
@@ -36,6 +28,8 @@ const Hud = ({ switchToPost, switchMenu, post, category }) => {
           <img src="assets/next.png" />
         </a>
       </div>
+
+      <Brand />
 
       <div className="message" onClick={switchMenu}>
         {category}

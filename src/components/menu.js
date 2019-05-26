@@ -5,15 +5,21 @@ import he from 'he'
 import { updatePosts, switchToCategory, switchToPost, SWITCH_MENU } from '../data'
 import { fetchPosts } from '../api'
 
+import { CloseIcon, LatestIcon } from './icons'
+
 const Menu = ({categories, isMenu, switchMenu, switchToPost, switchToCategory, updatePosts}) => {
 
-  function changeCategory(e, cat) {
+  function changeCategories(e, cat) {
     e.preventDefault();
 
-    fetchPosts({categories:[ cat ]}).then(posts => {
+    updatePosts([]);
+    if (cat.length === 1) {
+      switchToCategory(cat[0].name);
+    }
+    switchMenu()
+
+    fetchPosts({categories:cat}).then(posts => {
       updatePosts(posts);
-      switchToCategory(cat.name)
-      switchMenu()
       switchToPost(0)
     })
 
@@ -24,7 +30,7 @@ const Menu = ({categories, isMenu, switchMenu, switchToPost, switchToCategory, u
       let { name } = cat;
       let displayName = he.decode(name);
       return (
-        <a class="menu-link" onClick={(e)=>changeCategory(e,cat)}>
+        <a class="menu-link" onClick={(e)=>changeCategories(e,[cat])}>
           {displayName}
         </a>
       )
@@ -33,13 +39,16 @@ const Menu = ({categories, isMenu, switchMenu, switchToPost, switchToCategory, u
 
   return (
     <div id="menu" className={(isMenu) ? 'active' : ''}>
+      <div className="header-container">
+        <button onClick={switchMenu}>
+          <CloseIcon width={46} height={46} fill={'#BB0D00'}/>
+        </button>
+        <button onClick={(e)=>changeCategories(e,categories)}>
+          <LatestIcon width={46} height={46} fill={'#BB0D00'}/>
+        </button>
+      </div>
       <div class="menu-container">
-        <div class="menu-title">
-          Sections
-        </div>
-
         {links}
-
       </div>
     </div>
   )
