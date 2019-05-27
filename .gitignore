@@ -1,4 +1,4 @@
 /build/
 /index.html
 node_modules/
-reports/*.html
+/reports/*.html
