@@ -1,43 +1,42 @@
 
-const apiUrl = "https://topolitique.ch/beta/wp-json/wp/v2/"
-const postsUrl = `${apiUrl}posts/`
-const categoriesUrl = `${apiUrl}categories/?orderby=count&order=desc&per_page=30`
+const apiUrl = 'https://topolitique.ch/beta/wp-json/wp/v2/';
+const postsUrl = `${apiUrl}posts/`;
+const categoriesUrl = `${apiUrl}categories/?orderby=count&order=desc&per_page=30`;
 
 export const fetchPosts = (opts) => {
-
-  let cat_args = ""
-  let cat_exclude_args = ""
+  let catArgs = '';
+  let catExcludeArgs = '';
 
   if (opts.categories) {
-    cat_args = "?categories="
-    cat_exclude_args = "&categories_exclude="
+    catArgs = '?categories=';
+    catExcludeArgs = '&categories_exclude=';
 
-    let { categories } = opts;
-    categories.forEach(cat => {
-      let {name, id} = cat;
+    const { categories } = opts;
+    categories.forEach((cat) => {
+      const { name, id } = cat;
       if (name.includes('Non répertorié')) {
-        cat_exclude_args+=`${id},`
+        catExcludeArgs += `${id},`;
       } else {
-        cat_args+=`${id},`
+        catArgs += `${id},`;
       }
-    })
+    });
   }
-  let url = postsUrl+cat_args+cat_exclude_args
-  return new Promise(function(resolve, reject) {
+  const url = postsUrl + catArgs + catExcludeArgs;
+  return new Promise(((resolve, reject) => {
     fetch(url)
+      .catch((e) => { reject(e); })
       .then(response => response.json())
-      .then(data => {
-        resolve(data)
-      })
-  });
-}
+      .then((data) => {
+        resolve(data);
+      });
+  }));
+};
 
-export const fetchCategories = (opts) => {
-  return new Promise(function(resolve, reject) {
-    fetch(categoriesUrl)
-      .then(response => response.json())
-      .then(data => {
-        resolve(data)
-      })
-  });
-}
+export const fetchCategories = () => new Promise(((resolve, reject) => {
+  fetch(categoriesUrl)
+    .catch((e) => { reject(e); })
+    .then(response => response.json())
+    .then((data) => {
+      resolve(data);
+    });
+}));

@@ -20,12 +20,17 @@ To check out the latest version, go to this link
 -   When posts are loading, show info 😴
 -   Add previous post button 😴
 -   Change all images to svg components (see src/components/icons.js) 😴
--   Add eslint (with airbnb style guide) ✍️
 -   Cleanup css to more dense file 😴
 -   Check if icons and splashscreens work, and if we could remove some
     😴
+-   Stop and start timer, depending on status (menu open, posts
+    loading...) 😴
 
 ## Version 0.1.0 - Alpha
 
 All 0.1.x versions pathe the way to making a fully functional PWA web
 app. Nothing fancy there, just the foundations.  
+
+**tasks**
+
+-   Add eslint (with airbnb style guide) 👍

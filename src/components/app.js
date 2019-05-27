@@ -1,76 +1,73 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import he from 'he'
-import { disableBodyScroll } from 'body-scroll-lock'
+import React from 'react';
+import { connect } from 'react-redux';
+import he from 'he';
+import { disableBodyScroll } from 'body-scroll-lock';
 
-import { Link } from './ui'
 
 // Stolen from https://gist.github.com/gre/1650294
-function easeOutCubic (t) { return (--t)*t*t+1 }
+/*eslint-disable */
+function easeOutCubic(t) { return (--t) * t * t + 1; }
+/*eslint-disable */
 
 // Animate scroll
 function updateScroll(id) {
-  let el = document.getElementById(id);
+  const el = document.getElementById(id);
   if (el) {
-    let currentOffset = window.pageYOffset || document.documentElement.scrollTop || 0;
+    let currentOffset = window.pageYOffset||document.documentElement.scrollTop||0;
     const targetOffset = el.offsetTop || 0;
-    const scrollDifference = targetOffset-currentOffset;
+    const scrollDifference = targetOffset - currentOffset;
 
-    var scrollPosition = currentOffset;
-    let increment = .02;
-    var position = 0; //percentage (0 to 1)
+    let scrollPosition = currentOffset;
+    const increment = 0.02;
+    let position = 0; // percentage (0 to 1)
 
     // Animation loop
-    let animation = requestAnimationFrame(goToTarget)
+    const animation = requestAnimationFrame(goToTarget);
 
     function goToTarget() {
       position += increment;
-      let positionInFunction = easeOutCubic(position);
+      const positionInFunction = easeOutCubic(position);
 
-      scrollPosition = currentOffset+positionInFunction*scrollDifference;
+      scrollPosition = currentOffset + positionInFunction * scrollDifference;
 
-      if (positionInFunction<1) {
-        window.scrollTo(0, scrollPosition)
-        requestAnimationFrame(goToTarget)
-
+      if (positionInFunction < 1) {
+        window.scrollTo(0, scrollPosition);
+        requestAnimationFrame(goToTarget);
       } else {
-        cancelAnimationFrame(animation)
-        //window.scrollTo(0,targetOffset)
+        cancelAnimationFrame(animation);
+        // window.scrollTo(0,targetOffset)
         currentOffset = scrollPosition; // dunno why, but this has to be updated
       }
     }
   }
 }
 
-const PostsContainer = ({ posts, activePost }) => {
-
-  return posts.map((post, index) => {
-
-    let id = `post-${index}`
-    let authors = post.coauthors.map(author => (
-      <>
+const PostsContainer = ({ posts, activePost }) => posts.map((post, index) => {
+  const id = `post-${index}`;
+  const authors = post.coauthors.map(author => (
+      <span key={author.name} >
         <img className="author-image" src={author.avatar} />
         <span className="author">{author.name}</span>
-      </>
-    ))
+      </span>
+  ));
 
-    if (activePost===index) {updateScroll(id);}
+  if (activePost === index) { updateScroll(id); }
 
-    return (
+  return (
       <div
-        className={"post "+ ((activePost===index) ? 'active' : 'inactive')}
+        className={`post ${(activePost === index) ? 'active' : 'inactive'}`}
         key={id}
         id={id}
-        style={{backgroundImage:`url(${post.image})`}}>
+        style={{ backgroundImage: `url(${post.image})` }}>
 
         <div className="post-container">
           <a className="post-content" href={post.link}>
-            <h2 class="kicker">{he.decode(post.meta.kicker||'')}</h2>
+            <h2 className="kicker">{he.decode(post.meta.kicker || '')}</h2>
             <br />
-            <h1 class="title">{he.decode(post.title.rendered)}</h1>
-            <p class="description">
+            <h1 className="title">{he.decode(post.title.rendered)}</h1>
+            <p className="description">
               <span
-                dangerouslySetInnerHTML={{__html: he.decode(post.excerpt.rendered||'')}}
+                dangerouslySetInnerHTML={{ __html: he.decode(post.excerpt.rendered || '') }}
               />
               {authors}
             </p>
@@ -78,27 +75,24 @@ const PostsContainer = ({ posts, activePost }) => {
         </div>
 
       </div>
-    )
-  });
-}
+  );
+});
 const Posts = connect(
   state => ({
-    activePost:state.post,
-    posts:state.posts
-  })
-)(PostsContainer, 'Posts')
-
+    activePost: state.post,
+    posts: state.posts,
+  }),
+)(PostsContainer, 'Posts');
 
 
 const App = () => {
+  const targetRef = React.createRef();
+  const targetElement = targetRef.current;
 
-  let targetRef = React.createRef();
-  let targetElement = targetRef.current;
-
-  // PROBLEM: works only on desktop 
+  // PROBLEM: works only on desktop
   disableBodyScroll(targetElement);
 
-  let items = <div>Loading</div>
+  let items = <div>Loading</div>;
   try {
     items = <Posts />;
   } catch (e) {}
@@ -106,8 +100,8 @@ const App = () => {
   return (
     <div className="container" ref={targetElement}>
       {items}
-      <div className="post-as-container" id={`post-${items.length+1}`}></div>
+      <div className="post-as-container" id={`post-${items.length + 1}`}></div>
     </div>
-  )
-}
-export default App
+  );
+};
+export default App;
