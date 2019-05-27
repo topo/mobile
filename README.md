@@ -17,7 +17,7 @@ To check out the latest version, go to this link
 > ✍️  wip
 > 👍  done
 
--   When posts are loading, show info 😴
+-   When posts are loading, show info ✍️
 -   Add previous post button 😴
 -   Change all images to svg components (see src/components/icons.js) 😴
 -   Cleanup css to more dense file 😴

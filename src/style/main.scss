@@ -332,6 +332,16 @@ a {
   background:linear-gradient($brand_red_dark, $brand_red);
 }
 
+.post.loading .post-content {
+  bottom:40%;
+  opacity: 1;
+  color:white;
+}
+.loading-message {
+  opacity: 1;
+  color:white;
+}
+
 /* Transitions */
 .post.active {
 

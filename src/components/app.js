@@ -42,14 +42,26 @@ function updateScroll(id) {
   }
 }
 
+const Loading = () => {
+  return (
+    <div className="post loading">
+      <div className="post-content">
+        <p>Ça réfléchit ... Attends quelques petites secondes !</p>
+      </div>
+    </div>
+  )
+}
+
+const CoAuthors = ({coauthors}) => coauthors.map((author) => (
+  <span key={author.name} >
+    <img className="author-image" src={author.avatar} alt="_"/>
+    <span className="author">{author.name}</span>
+  </span>
+))
+
 const PostsContainer = ({ posts, activePost }) => posts.map((post, index) => {
+
   const id = `post-${index}`;
-  const authors = post.coauthors.map(author => (
-      <span key={author.name} >
-        <img className="author-image" src={author.avatar} />
-        <span className="author">{author.name}</span>
-      </span>
-  ));
 
   if (activePost === index) { updateScroll(id); }
 
@@ -69,7 +81,7 @@ const PostsContainer = ({ posts, activePost }) => posts.map((post, index) => {
               <span
                 dangerouslySetInnerHTML={{ __html: he.decode(post.excerpt.rendered || '') }}
               />
-              {authors}
+              <CoAuthors coauthors={post.coauthors} />
             </p>
           </a>
         </div>
@@ -85,17 +97,19 @@ const Posts = connect(
 )(PostsContainer, 'Posts');
 
 
-const App = () => {
+const App = ({posts}) => {
   const targetRef = React.createRef();
   const targetElement = targetRef.current;
 
   // PROBLEM: works only on desktop
   disableBodyScroll(targetElement);
 
-  let items = <div>Loading</div>;
-  try {
-    items = <Posts />;
-  } catch (e) {}
+  let items = <Loading />;
+  if (posts.length>0) {
+    try {
+      items = <Posts />;
+    } catch (e) {}
+  }
 
   return (
     <div className="container" ref={targetElement}>
@@ -104,4 +118,6 @@ const App = () => {
     </div>
   );
 };
-export default App;
+export default connect(
+  state => ({posts:state.posts})
+)(App, 'App');

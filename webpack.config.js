@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
@@ -48,6 +49,7 @@ module.exports = {
       filename:path.join(__dirname, 'index.html'),
       alwaysWriteToDisk: true
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackHarddiskPlugin(),
     new BundleAnalyzerPlugin({
       analyzerMode:'static',
