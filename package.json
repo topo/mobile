@@ -9,7 +9,8 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "dev": "webpack-dev-server --config webpack.config.js --mode development",
-    "lint": "eslint src/**/*.js"
+    "lint": "eslint src/**/*.js",
+    "perf": "lighthouse https://mobile.the-duck.now.sh --output-path reports/lighthouse.html"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

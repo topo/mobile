@@ -25,12 +25,21 @@ To check out the latest version, go to this link
     😴
 -   Stop and start timer, depending on status (menu open, posts
     loading...) 😴
+-   Style change on category type 😴
+-   When post type is video, go to youtube video 😴
+-   Add 'advertising', a header that shows an announcement or something
+    😴
+-   Images : ensure that all images are https, otherwise don't show them
+    😴
+-   Images : lazy loading, if possible ? 😴
+-   'serviceworker.js' : figure out how it works 😴
 
 ## Version 0.1.0 - Alpha
 
 All 0.1.x versions pathe the way to making a fully functional PWA web
 app. Nothing fancy there, just the foundations.  
 
-**tasks**
+**Tasks**
 
 -   [0.1.1] Add eslint (with airbnb style guide) 👍
+-   [0.1.2] Add lighthouse report 👍
