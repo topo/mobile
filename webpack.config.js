@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const isDevServer = process.argv[1].indexOf('webpack-dev-server') !== -1;
 
@@ -47,6 +48,11 @@ module.exports = {
       filename:path.join(__dirname, 'index.html'),
       alwaysWriteToDisk: true
     }),
-    new HtmlWebpackHarddiskPlugin()
+    new HtmlWebpackHarddiskPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode:'static',
+      openAnalyzer:false,
+      reportFilename:path.join(__dirname, 'reports','bundle-analyser.html')
+    })
   ]
 }
