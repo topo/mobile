@@ -48,3 +48,7 @@ app. Nothing fancy there, just the foundations.
 
 resources for serviceworker
 <https://github.com/poanchen/pwa-to-do-list/blob/dev/src/service-worker.js>
+
+<https://medium.com/appscope/7-excellent-progressive-web-apps-that-prove-pwas-are-ready-for-mainstream-consumer-adoption-9a8a8e876eba>
+
+<https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0>
