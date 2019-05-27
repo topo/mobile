@@ -33,4 +33,4 @@ app. Nothing fancy there, just the foundations.
 
 **tasks**
 
--   Add eslint (with airbnb style guide) 👍
+-   [0.1.1] Add eslint (with airbnb style guide) 👍
