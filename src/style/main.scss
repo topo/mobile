@@ -37,6 +37,7 @@ a {
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* on top of posts */
@@ -45,7 +46,8 @@ a {
   top:0px;
   left:0px;
   right:0px;
-  z-index:110
+  z-index:110;
+  background: rgba(250,20,20,0.3);
 }
 
 /* Top - progress bar */
@@ -62,7 +64,7 @@ a {
   display: block;
   height:100%;
   width: 2%;
-  background: $brand_red;
+  background: $progress_color;
   transition: width 1s;
   transition-timing-function: ease-out;
 }

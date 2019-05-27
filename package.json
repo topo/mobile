@@ -1,6 +1,6 @@
 {
   "name": "topo-website-mobile",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "PWA of TOPO's website",
   "main": "index.js",
   "author": "Mark Spurgeon",
@@ -31,10 +31,12 @@
     "webpack-pwa-manifest": "^4.0.0"
   },
   "dependencies": {
+    "body-scroll-lock": "^2.6.1",
     "he": "^1.2.0",
     "query-string": "^6.5.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-easy-swipe": "^0.0.17",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",

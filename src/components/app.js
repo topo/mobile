@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import he from 'he'
+import { disableBodyScroll } from 'body-scroll-lock'
 
 import { Link } from './ui'
 
@@ -81,23 +82,29 @@ const PostsContainer = ({ posts, activePost }) => {
   });
 }
 const Posts = connect(
-  state => {
-    return {
-      activePost:state.post,
-      posts:state.posts
-    }
-  }
+  state => ({
+    activePost:state.post,
+    posts:state.posts
+  })
 )(PostsContainer, 'Posts')
 
 
+
 const App = () => {
+
+  let targetRef = React.createRef();
+  let targetElement = targetRef.current;
+
+  // PROBLEM: works only on desktop 
+  disableBodyScroll(targetElement);
+
   let items = <div>Loading</div>
   try {
     items = <Posts />;
   } catch (e) {}
 
   return (
-    <div className="container">
+    <div className="container" ref={targetElement}>
       {items}
       <div className="post-as-container" id={`post-${items.length+1}`}></div>
     </div>
