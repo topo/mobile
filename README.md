@@ -43,3 +43,8 @@ app. Nothing fancy there, just the foundations.
 
 -   [0.1.1] Add eslint (with airbnb style guide) 👍
 -   [0.1.2] Add lighthouse report 👍
+
+* * *
+
+resources for serviceworker
+<https://github.com/poanchen/pwa-to-do-list/blob/dev/src/service-worker.js>
