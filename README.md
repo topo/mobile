@@ -37,6 +37,7 @@ To check out the latest version, go to this link
 -   Load articles when offline (using api, means that there will be no
     links) 😴
 -   Reload new posts on scroll up. 😴
+-   Show status when offline 😴
 
 ## Version 0.1.0 - Alpha
 
