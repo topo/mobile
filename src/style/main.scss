@@ -112,7 +112,7 @@ a {
   border-radius: 0pt;
   box-shadow: none;
   background-color:$brand_red;
-  transition: all .4s;
+  transition: padding-bottom .4s, border-radius .5s .4s;
 }
 .watermark .logo svg {
   width:inherit;
@@ -147,7 +147,7 @@ a {
 }
 .watermark.menu .logo {
   padding-bottom:9pt;
-  border-radius: 2pt;
+  border-radius: 0pt;
 }
 .watermark.menu .brand {
   max-height: 0pt;
