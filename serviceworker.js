@@ -39,7 +39,7 @@ self.addEventListener('fetch', function(event) {
   let { request } = event;
   let { fetchable } = CACHES;
 
-  if (request.url.endsWith("&noCache=true" || request.url.endsWith("index.html")) {
+  if (request.url.endsWith("&noCache=true") || request.url.endsWith("index.html")) {
     event.respondWith(
       caches.open(fetchable).then(function(cache) {
         return fetch(event.request).then(function(response) {

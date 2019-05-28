@@ -59,3 +59,5 @@ resources for serviceworker
 <https://medium.com/appscope/7-excellent-progressive-web-apps-that-prove-pwas-are-ready-for-mainstream-consumer-adoption-9a8a8e876eba>
 
 <https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0>
+
+<https://appsco.pe/> : showcasing PWAs
