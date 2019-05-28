@@ -8,13 +8,14 @@ import { render } from 'react-dom';
 import {
   reducer,
   _updatePosts,
+  _updateSocial,
   _updateCategories,
   _switchToPost,
   _setTimer,
 } from './data';
 import {
   fetchPosts,
-  fetchCategories,
+  fetchCustomUserInterface,
 } from './api';
 
 import './style/main.scss';
@@ -41,8 +42,13 @@ if ('serviceWorker' in navigator) {
 
 const theStore = createStore(reducer, undefined, applyMiddleware(thunkMiddleware));
 
-fetchCategories().then((categories) => {
+fetchCustomUserInterface().then((data) => {
+  const { menus, social } = data;
+  const categories = menus.categories.data;
+
+  theStore.dispatch(_updateSocial(social));
   theStore.dispatch(_updateCategories(categories));
+
   fetchPosts({ categories }).then((posts) => {
     theStore.dispatch(_updatePosts(posts));
   });

@@ -9,6 +9,24 @@ import { fetchPosts } from '../api';
 
 import { CloseIcon, LatestIcon } from './icons';
 
+const SocialIconsContainer = ({ social }) => Object.keys(social).map((media, i) => {
+  const icon = social[media];
+  return (
+    <a
+      key={i}
+      className={ `icon ${media}` }
+      href={icon}
+      title={media}
+      target="_blank"
+      rel="noopener noreferrer" >
+      {media}
+    </a>
+  );
+});
+const SocialIcons = connect(
+  state => ({ social: state.social }),
+)(SocialIconsContainer, 'SocialIcons');
+
 const Menu = ({
   categories, isMenu, switchMenu, switchToPost, switchToCategory, updatePosts,
 }) => {
@@ -52,6 +70,7 @@ const Menu = ({
       </div>
       <div className="menu-container">
         {links}
+        <SocialIcons />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 
 export const UPDATE_POSTS = 'UPDATE_POSTS';
 export const UPDATE_CATEGORIES = 'UPDATE_CATEGORIES';
+export const UPDATE_SOCIAL = 'UPDATE_SOCIAL';
 export const SWITCH_TO_POST = 'SWITCH_TO_POST';
 export const SWITCH_TO_CATEGORY = 'SWITCH_TO_CATEGORY';
 export const SWITCH_MENU = 'SWITCH_MENU';
@@ -10,9 +11,15 @@ export const _updatePosts = posts => ({
   type: UPDATE_POSTS,
   posts,
 });
+
 export const _updateCategories = categories => ({
   type: UPDATE_CATEGORIES,
   categories,
+});
+
+export const _updateSocial = social => ({
+  type: UPDATE_SOCIAL,
+  social,
 });
 
 export const _switchToCategory = category => ({
@@ -36,6 +43,7 @@ const initial = {
   post: 0,
   posts: [],
   categories: [],
+  social: {},
   timer: 0,
 };
 
@@ -53,6 +61,11 @@ export const reducer = (state = initial, action) => {
       return {
         ...state,
         categories: [...action.categories],
+      };
+    case UPDATE_SOCIAL:
+      return {
+        ...state,
+        social: action.social,
       };
 
     case SWITCH_TO_POST:

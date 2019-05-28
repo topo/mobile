@@ -54,7 +54,7 @@ const Loading = () => {
 
 const CoAuthors = ({coauthors}) => coauthors.map((author) => (
   <span key={author.name} >
-    <img className="author-image" src={author.avatar} alt="_"/>
+    <img className="author-image" src={author.avatar} alt="-"/>
     <span className="author">{author.name}</span>
   </span>
 ))
