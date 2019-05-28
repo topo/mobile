@@ -1,16 +1,16 @@
 {
   "name": "topo-website-mobile",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "PWA of TOPO's website",
   "main": "index.js",
   "author": "Mark Spurgeon",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js  --progress",
     "dev": "webpack-dev-server --config webpack.config.js --mode development",
     "lint": "eslint src/**/*.js",
-    "perf": "lighthouse https://mobile.the-duck.now.sh --output-path reports/lighthouse.html"
+    "lighthouse": "lighthouse https://mobile.the-duck.now.sh --output-path reports/lighthouse.html"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "body-scroll-lock": "^2.6.1",
-    "he": "^1.2.0",
     "query-string": "^6.5.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

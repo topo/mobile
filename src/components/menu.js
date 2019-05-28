@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import he from 'he';
 
 import {
   _updatePosts, _switchToCategory, _switchToPost, SWITCH_MENU,
@@ -47,7 +46,7 @@ const Menu = ({
   const links = categories.map((cat) => {
     if (!cat.name.includes('Non répertorié') && !cat.name.includes('Non classé')) {
       const { name } = cat;
-      const displayName = he.decode(name);
+      const displayName = name;
       return (
         <a className="menu-link" key={cat.id} onClick={e => changeCategories(e, [cat])}>
           {displayName}

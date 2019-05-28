@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import he from 'he';
 import { disableBodyScroll } from 'body-scroll-lock';
 
 
@@ -74,12 +73,12 @@ const PostsContainer = ({ posts, activePost }) => posts.map((post, index) => {
 
         <div className="post-container">
           <a className="post-content" href={post.link}>
-            <h2 className="kicker">{he.decode(post.meta.kicker || '')}</h2>
+            <h2 className="kicker">{post.meta.kicker}</h2>
             <br />
-            <h1 className="title">{he.decode(post.title.rendered)}</h1>
+            <h1 className="title">{post.title.rendered}</h1>
             <p className="description">
               <span
-                dangerouslySetInnerHTML={{ __html: he.decode(post.excerpt.rendered || '') }}
+                dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
               />
               <CoAuthors coauthors={post.coauthors} />
             </p>

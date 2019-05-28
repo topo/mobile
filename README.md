@@ -50,6 +50,7 @@ app. Nothing fancy there, just the foundations.
 -   [0.1.2] Add lighthouse report 👍
 -   [0.1.3] Service worker, load when offline; Custom UI (sections and
     social links)
+-   [0.1.4] Removed he.js, too heavy
 
 * * *
 
@@ -61,3 +62,9 @@ resources for serviceworker
 <https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0>
 
 <https://appsco.pe/> : showcasing PWAs
+
+## Performance tests
+
+Latest reports are on reports/
+
+[Check out some performance information here](reports/README.md)
