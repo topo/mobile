@@ -19,7 +19,7 @@ To check out the latest version, go to this link
 
 -   When posts are loading, show info ✍️
 -   Add previous post button 😴
--   Change all images to svg components (see src/components/icons.js) 😴
+-   Change all images to svg components (see src/components/icons.js) ✍️
 -   Cleanup css to more dense file 😴
 -   Check if icons and splashscreens work, and if we could remove some
     😴
@@ -32,7 +32,11 @@ To check out the latest version, go to this link
 -   Images : ensure that all images are https, otherwise don't show them
     😴
 -   Images : lazy loading, if possible ? 😴
--   'serviceworker.js' : figure out how it works 😴
+-   'serviceworker.js' : figure out how it works ✍️
+-   Block timer when holding finger on screen 😴
+-   Load articles when offline (using api, means that there will be no
+    links) 😴
+-   Reload new posts on scroll up. 😴
 
 ## Version 0.1.0 - Alpha
 
@@ -43,6 +47,8 @@ app. Nothing fancy there, just the foundations.
 
 -   [0.1.1] Add eslint (with airbnb style guide) 👍
 -   [0.1.2] Add lighthouse report 👍
+-   [0.1.3] Service worker, load when offline; Custom UI (sections and
+    social links)
 
 * * *
 

@@ -10,6 +10,7 @@ const uiUrl = `${topoApiUrl}ui/`;
 export const fetchPosts = (opts) => {
   let catArgs = '';
   let catExcludeArgs = '';
+  let cache = '';
 
   if (opts.categories) {
     catArgs = '?categories=';
@@ -25,7 +26,12 @@ export const fetchPosts = (opts) => {
       }
     });
   }
-  const url = postsUrl + catArgs + catExcludeArgs;
+
+  if (opts.noCache) {
+    cache = '&noCache=true';
+  }
+
+  const url = postsUrl + catArgs + catExcludeArgs + cache;
   return new Promise(((resolve, reject) => {
     fetch(url)
       .catch((e) => { reject(e); })

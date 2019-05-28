@@ -43,7 +43,7 @@ const Hud = ({
       <Brand />
 
       <div className="message" onClick={_switchMenu}>
-        {category}
+        {category || 'Coucou'}
       </div>
 
       <Menu />

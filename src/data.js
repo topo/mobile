@@ -39,7 +39,7 @@ export const _setTimer = timer => ({
 
 const initial = {
   isMenu: false,
-  category: 'Coucou',
+  category: null,
   post: 0,
   posts: [],
   categories: [],

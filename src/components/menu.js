@@ -32,14 +32,13 @@ const Menu = ({
 }) => {
   function changeCategories(e, cat) {
     e.preventDefault();
-
     updatePosts([]);
     if (cat.length === 1) {
       switchToCategory(cat[0].name);
     }
     switchMenu();
 
-    fetchPosts({ categories: cat }).then((posts) => {
+    fetchPosts({ categories: cat, noCache: true }).then((posts) => {
       updatePosts(posts);
       switchToPost(0);
     });

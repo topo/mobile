@@ -25,17 +25,18 @@ import Hud from './components/hud';
 
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('serviceworker.js')
-    .then(
-      (registration) => {
-        // eslint-disable-next-line no-console
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      },
-      (err) => {
-        // eslint-disable-next-line no-console
-        console.log('ServiceWorker registration failed: ', err);
-      },
-    );
+  navigator.serviceWorker.register('serviceworker.js', {
+    useCache: true,
+  }).then(
+    (registration) => {
+      // eslint-disable-next-line no-console
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    },
+    (err) => {
+      // eslint-disable-next-line no-console
+      console.log('ServiceWorker registration failed: ', err);
+    },
+  );
 }
 
 // Turbolinks.start();
