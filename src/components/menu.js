@@ -27,7 +27,7 @@ const SocialIcons = connect(
 )(SocialIconsContainer, 'SocialIcons');
 
 const Menu = ({
-  categories, isMenu, switchMenu, switchToPost, switchToCategory, updatePosts,
+  uiCategories, isMenu, switchMenu, switchToPost, switchToCategory, updatePosts,
 }) => {
   function changeCategories(e, cat) {
     e.preventDefault();
@@ -43,7 +43,7 @@ const Menu = ({
     });
   }
 
-  const links = categories.map((cat) => {
+  const links = uiCategories.map((cat) => {
     if (!cat.name.includes('Non répertorié') && !cat.name.includes('Non classé')) {
       const { name } = cat;
       const displayName = name;
@@ -62,7 +62,7 @@ const Menu = ({
         <button onClick={switchMenu}>
           <CloseIcon width={46} height={46} fill={'#BB0D00'}/>
         </button>
-        <button onClick={e => changeCategories(e, categories)}>
+        <button onClick={e => changeCategories(e, uiCategories)}>
           <LatestIcon width={46} height={46} fill={'#BB0D00'}/>
         </button>
       </div>
@@ -77,7 +77,7 @@ const Menu = ({
 export default connect(
   state => ({
     isMenu: state.isMenu,
-    categories: state.categories,
+    uiCategories: state.uiCategories,
   }),
   dispatch => ({
     updatePosts: (posts) => { dispatch(_updatePosts(posts)); },

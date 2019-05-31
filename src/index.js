@@ -8,7 +8,8 @@ import { render } from 'react-dom';
 import {
   reducer,
   _updatePosts,
-  _updateSocial,
+  _updateUISocial,
+  _updateUICategories,
   _updateCategories,
   _switchToPost,
   _setTimer,
@@ -16,6 +17,7 @@ import {
 import {
   fetchPosts,
   fetchCustomUserInterface,
+  fetchCategories,
 } from './api';
 
 import './style/main.scss';
@@ -28,15 +30,22 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('serviceworker.js', {
     useCache: true,
   }).then(
-    (registration) => {
+    (registration, err) => {
+      if (err) throw err;
       // eslint-disable-next-line no-console
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    },
-    (err) => {
-      // eslint-disable-next-line no-console
-      console.log('ServiceWorker registration failed: ', err);
+      console.log('service worker registered : ', registration.scope);
+      // After registration : push notifications permission
+      window.Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          // eslint-disable-next-line no-console
+          console.log('notifications have been granted!');
+        }
+      });
     },
   );
+} else {
+  // eslint-disable-next-line no-console
+  console.log("service worker doesn't seem to be permitted");
 }
 
 // Turbolinks.start();
@@ -45,13 +54,17 @@ const theStore = createStore(reducer, undefined, applyMiddleware(thunkMiddleware
 
 fetchCustomUserInterface().then((data) => {
   const { menus, social } = data;
-  const categories = menus.categories.data;
+  const uiCategories = menus.categories.data;
 
-  theStore.dispatch(_updateSocial(social));
-  theStore.dispatch(_updateCategories(categories));
+  theStore.dispatch(_updateUISocial(social));
+  theStore.dispatch(_updateUICategories(uiCategories));
 
-  fetchPosts({ categories }).then((posts) => {
-    theStore.dispatch(_updatePosts(posts));
+  fetchCategories().then((categories) => {
+    theStore.dispatch(_updateCategories(categories));
+
+    fetchPosts({ categories }).then((posts) => {
+      theStore.dispatch(_updatePosts(posts));
+    });
   });
 });
 

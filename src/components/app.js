@@ -51,12 +51,17 @@ const Loading = () => {
   )
 }
 
-const CoAuthors = ({coauthors}) => coauthors.map((author) => (
-  <span key={author.name} >
-    <img className="author-image" src={author.avatar} alt="-"/>
-    <span className="author">{author.name}</span>
-  </span>
-))
+const CoAuthors = ({coauthors}) => coauthors.map((author) => {
+  if (author.avatar && !author.avatar.startsWith('https://topolitique.ch')) {
+    author.avatar = "assets/coauthor.png";
+  };
+  return (
+    <span key={author.name} >
+      <img className="author-image" src={author.avatar} alt="-"/>
+      <span className="author">{author.name}</span>
+    </span>
+  );
+});
 
 const PostsContainer = ({ posts, activePost }) => posts.map((post, index) => {
 
@@ -69,7 +74,7 @@ const PostsContainer = ({ posts, activePost }) => posts.map((post, index) => {
         className={`post ${(activePost === index) ? 'active' : 'inactive'}`}
         key={id}
         id={id}
-        style={{ backgroundImage: `url(${post.image})` }}>
+        style={ (post.image && post.image.startsWith('https://')) ? { backgroundImage: `url(${post.image})` } : null}>
 
         <div className="post-container">
           <a className="post-content" href={post.link}>

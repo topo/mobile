@@ -1,4 +1,4 @@
-let VERSION = "0.1.3-0";
+let VERSION = "0.1.5-0";
 
 let CACHES = {
   assets: 'assets-v'+VERSION,
@@ -39,12 +39,15 @@ self.addEventListener('fetch', function(event) {
   let { request } = event;
   let { fetchable } = CACHES;
 
+  request.url.replace('http://', 'https://');
+
   if (request.url.endsWith("&noCache=true") || request.url.endsWith("index.html")) {
     event.respondWith(
       caches.open(fetchable).then(function(cache) {
-        return fetch(event.request).then(function(response) {
+        return fetch(request).then(function(response) {
           if (response.ok) {
-            cache.put(event.request, response.clone());
+            request.url = request.url.replace("&noCache=true", '')
+            cache.put(request, response.clone());
           }
           return response;
         }).catch((e) => {
@@ -55,10 +58,10 @@ self.addEventListener('fetch', function(event) {
   } else {
     event.respondWith(
       caches.open(fetchable).then(function(cache) {
-        return cache.match(event.request).then(function (response) {
-          return response || fetch(event.request).then(function(response) {
+        return cache.match(request).then(function (response) {
+          return response || fetch(request).then(function(response) {
             if (response.ok) {
-              cache.put(event.request, response.clone());
+              cache.put(request, response.clone());
             }
             return response;
           }).catch((e) => {

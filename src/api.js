@@ -4,8 +4,7 @@ const topoApiUrl = 'https://topolitique.ch/beta/wp-json/topo/v1/';
 
 const postsUrl = `${apiUrl}posts/`;
 const uiUrl = `${topoApiUrl}ui/`;
-// FOLLOWING IS DEPRECIATED
-// const categoriesUrl = `${apiUrl}categories/?orderby=count&order=desc&per_page=30`;
+const categoriesUrl = `${apiUrl}categories/?orderby=count&order=desc&per_page=30`;
 
 export const fetchPosts = (opts) => {
   let catArgs = '';
@@ -44,6 +43,15 @@ export const fetchPosts = (opts) => {
 
 export const fetchCustomUserInterface = () => new Promise(((resolve, reject) => {
   fetch(uiUrl)
+    .catch((e) => { reject(e); })
+    .then(response => response.json())
+    .then((data) => {
+      resolve(data);
+    });
+}));
+
+export const fetchCategories = () => new Promise(((resolve, reject) => {
+  fetch(categoriesUrl)
     .catch((e) => { reject(e); })
     .then(response => response.json())
     .then((data) => {

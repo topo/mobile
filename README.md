@@ -50,7 +50,9 @@ app. Nothing fancy there, just the foundations.
 -   [0.1.2] Add lighthouse report 👍
 -   [0.1.3] Service worker, load when offline; Custom UI (sections and
     social links)
--   [0.1.4] Removed he.js, too heavy
+-   [0.1.4] Remove he.js, too heavy
+-   [0.1.5] Prevent https requests and separate ui categories to all
+    categories 
 
 * * *
 
