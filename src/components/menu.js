@@ -6,10 +6,31 @@ import {
 } from '../data';
 import { fetchPosts } from '../api';
 
-import { CloseIcon, LatestIcon } from './icons';
+import {
+  YouTubeIcon,
+  InstagramIcon,
+  FacebookIcon,
+  TwitterIcon,
+  CloseIcon,
+  LatestIcon,
+} from './icons';
 
 const SocialIconsContainer = ({ social }) => Object.keys(social).map((media, i) => {
   const icon = social[media];
+  const icoProps = {
+    width: 60,
+    height: 60,
+  };
+  let svg = <TwitterIcon { ...icoProps } />;
+  if (media === 'twitter') {
+    svg = <TwitterIcon { ...icoProps } />;
+  } else if (media === 'facebook') {
+    svg = <FacebookIcon { ...icoProps } />;
+  } else if (media === 'instagram') {
+    svg = <InstagramIcon { ...icoProps } />;
+  } else if (media === 'youtube') {
+    svg = <YouTubeIcon { ...icoProps } />;
+  }
   return (
     <a
       key={i}
@@ -18,7 +39,7 @@ const SocialIconsContainer = ({ social }) => Object.keys(social).map((media, i) 
       title={media}
       target="_blank"
       rel="noopener noreferrer" >
-      {media}
+      {svg}
     </a>
   );
 });
@@ -48,7 +69,7 @@ const Menu = ({
       const { name } = cat;
       const displayName = name;
       return (
-        <a className="menu-link" key={cat.id} onClick={e => changeCategories(e, [cat])}>
+        <a className="menu-link" key={cat.id} title={cat.name} onClick={e => changeCategories(e, [cat])}>
           {displayName}
         </a>
       );
@@ -59,16 +80,18 @@ const Menu = ({
   return (
     <div id="menu" className={(isMenu) ? 'active' : ''}>
       <div className="header-container">
-        <button onClick={switchMenu}>
+        <button onClick={switchMenu} title="Close menu">
           <CloseIcon width={46} height={46} fill={'#BB0D00'}/>
         </button>
-        <button onClick={e => changeCategories(e, uiCategories)}>
+        <button onClick={e => changeCategories(e, uiCategories)} title="Home">
           <LatestIcon width={46} height={46} fill={'#BB0D00'}/>
         </button>
       </div>
       <div className="menu-container">
         {links}
-        <SocialIcons />
+        <div className="social">
+          <SocialIcons />
+        </div>
       </div>
     </div>
   );

@@ -40,12 +40,15 @@ const updateScroll = (id) => {
 }
 
 const CoAuthors = ({coauthors}) => coauthors.map((author) => {
+  let avatar = <img className="author-image" src={author.avatar} alt={author.name} />
   if (author.avatar && !author.avatar.startsWith('https://topolitique.ch')) {
     author.avatar = "assets/coauthor.png";
-  };
+  } else if (!author.avatar) {
+    avatar = <span></span>;
+  }
   return (
     <span key={author.name} >
-      <img className="author-image" src={author.avatar} alt="-"/>
+      {avatar}
       <span className="author">{author.name}</span>
     </span>
   );

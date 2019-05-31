@@ -53,7 +53,6 @@ a {
   left:0px;
   right:0px;
   z-index:110;
-  background: rgba(250,20,20,0.3);
 }
 
 /* Top - progress bar */
@@ -79,18 +78,26 @@ a {
 .navigation {
   position: fixed;
   bottom:0pt;
-  height:48pt;
+  height:56pt;
   width: 100%;
 }
 .nav-next {
+  display: block;
   float:right;
+  margin:6pt;
+  margin-right:12pt;
   color:white;
   cursor:pointer;
   padding:4pt;
 }
-.nav-next img {
-  height:28pt;
-  margin-top:6pt;
+.nav-previous {
+  display: block;
+  float:left;
+  margin:6pt;
+  margin-left:12pt;
+  color:white;
+  cursor:pointer;
+  padding:4pt;
 }
 
 /* Top right - branding */
@@ -158,19 +165,48 @@ a {
 .watermark.menu .brand .background {
   width: 0%;
 }
+
 /* Top left - label */
 .message {
-  cursor:pointer;
   position: fixed;
   top:12pt;
-  left:12pt;
+  left:16pt;
   font-size: 10pt;
   font-weight: 500;
   padding:4pt;
   border-radius: 1.5pt;
-  background: white;
-  color:$brand_red_dark;
-  box-shadow: 0pt 0pt 5pt 2pt rgba(50,50,50,0.1);
+  color:white;
+  text-shadow: 1pt 1pt 2pt rgba(20,20,20,0.2);
+}
+.status {
+  position: fixed;
+  top:32pt;
+  left:16pt;
+  margin:0px;
+  padding-left:4pt;
+  line-height:12pt;
+  vertical-align: middle;
+  font-size: 9pt;
+  font-weight: 300;
+  color:white;
+  text-shadow: 1pt 1pt 2pt rgba(20,20,20,0.2);
+}
+.pin {
+  display: inline-block;
+  width: 8pt;
+  height: 8pt;
+  vertical-align: middle;
+  margin:0px;
+  margin-right:2pt;
+  border-radius: 50%;
+  background:rgba(30,30,30,0.5);
+  box-shadow: 0pt 0pt 2pt 1pt rgba(20,20,20,0.2)
+}
+.pin.online {
+  background: $online;
+}
+.pin.offline {
+  background: $offline;
 }
 
 /* HUD - menu */
@@ -234,6 +270,19 @@ a {
   padding-top:3pt;
   padding-bottom:3pt;
 }
+
+.social {
+  margin-top:12pt;
+  height:48pt;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.icon {
+  display: block;
+}
+
 /*
  * Post (iterable)
  */

@@ -10,6 +10,7 @@ import {
   _updatePosts,
   _updateUISocial,
   _updateUICategories,
+  _updateUILastUpdated,
   _updateCategories,
   _switchToPost,
   _setTimer,
@@ -25,7 +26,9 @@ import './style/main.scss';
 import App from './components/app';
 import Hud from './components/hud';
 
+const theStore = createStore(reducer, undefined, applyMiddleware(thunkMiddleware));
 
+// Service worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('serviceworker.js', {
     useCache: true,
@@ -34,7 +37,7 @@ if ('serviceWorker' in navigator) {
       if (err) throw err;
       // eslint-disable-next-line no-console
       console.log('service worker registered : ', registration.scope);
-      // After registration : push notifications permission
+
       window.Notification.requestPermission().then((permission) => {
         if (permission === 'granted') {
           // eslint-disable-next-line no-console
@@ -43,15 +46,16 @@ if ('serviceWorker' in navigator) {
       });
     },
   );
+
+  navigator.serviceWorker.addEventListener('message', (event) => {
+    theStore.dispatch(_updateUILastUpdated(event.data));
+  });
 } else {
   // eslint-disable-next-line no-console
   console.log("service worker doesn't seem to be permitted");
 }
 
-// Turbolinks.start();
-
-const theStore = createStore(reducer, undefined, applyMiddleware(thunkMiddleware));
-
+// Load data
 fetchCustomUserInterface().then((data) => {
   const { menus, social } = data;
   const uiCategories = menus.categories.data;
@@ -68,7 +72,7 @@ fetchCustomUserInterface().then((data) => {
   });
 });
 
-// Loop next story
+// Loop
 setInterval(() => {
   const { timer, post } = theStore.getState();
 
@@ -89,6 +93,7 @@ setInterval(() => {
   }
 }, 1000);
 
+// Render
 render(
   <Provider store={theStore}>
     <App/>

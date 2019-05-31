@@ -6,9 +6,43 @@ import { _setTimer, _switchToPost, SWITCH_MENU } from '../data';
 import Menu from './menu';
 import Brand from './brand';
 import Progress from './progress';
+import {
+  NextIcon,
+  PreviousIcon,
+} from './icons';
+
+const StatusContainer = ({ lastUpdated }) => {
+  let online = '';
+  if ('onLine' in navigator) {
+    online = (navigator.onLine) ? 'online' : 'offline';
+  }
+
+  let status = '';
+  if (lastUpdated) {
+    const when = new Date(lastUpdated);
+    const hours = when.getHours();
+    let mins = when.getMinutes();
+    if (mins < 10) { mins = `0${mins.toString()}`; }
+
+    status = `${hours}h${mins}`;
+  } else {
+    status = (online === 'online') ? 'A jour' : "Connectez-vous à l'interwebs";
+  }
+  return (
+    <div className="status">
+      <span className={`pin ${online}`}></span>
+      {status}
+    </div>
+  );
+};
+const Status = connect(
+  state => ({
+    lastUpdated: state.lastUpdated,
+  }),
+)(StatusContainer, 'Status');
 
 const Hud = ({
-  setTimer, switchToPost, _switchMenu, post, category,
+  setTimer, switchToPost, switchMenu, post, category,
 }) => {
   function nextPost() {
     const next = post + 1;
@@ -33,19 +67,20 @@ const Hud = ({
   return (
     <div className="hud">
       <div className="navigation">
-        <a className="nav-left">
+        <a className="nav-previous" onClick={previousPost} title="Attends, fais voir l'autre">
+          <PreviousIcon height={36} width={56} fill='rgba(200,200,200,0.6)' />
         </a>
-        <a className="nav-next" onClick={nextPost}>
-          <img src="assets/next.png" />
+        <a className="nav-next" onClick={nextPost} title="Au suivant!">
+          <NextIcon height={36} width={56} fill='rgba(220,220,220,0.9)' />
         </a>
       </div>
 
       <Brand />
 
-      <div className="message" onClick={_switchMenu}>
-        {category || 'Coucou'}
+      <div className="message" onClick={switchMenu} >
+        {category || 'Derniers articles'}
       </div>
-
+      <Status />
       <Menu />
       <Progress />
     </div>

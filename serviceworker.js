@@ -1,8 +1,8 @@
-let VERSION = "0.1.5-0";
+let VERSION = "0.1.6-1";
 
 let CACHES = {
   assets: 'assets-v'+VERSION,
-  fetchable:'fetch-v'+VERSION
+  fetchable:'fetch-v'+VERSION,
 }
 
 self.addEventListener('install', function(event) {
@@ -39,36 +39,33 @@ self.addEventListener('fetch', function(event) {
   let { request } = event;
   let { fetchable } = CACHES;
 
-  request.url.replace('http://', 'https://');
-
-  if (request.url.endsWith("&noCache=true") || request.url.endsWith("index.html")) {
-    event.respondWith(
-      caches.open(fetchable).then(function(cache) {
-        return fetch(request).then(function(response) {
-          if (response.ok) {
-            request.url = request.url.replace("&noCache=true", '')
-            cache.put(request, response.clone());
-          }
-          return response;
-        }).catch((e) => {
-          return response;
-        });
-      })
-    );
-  } else {
-    event.respondWith(
-      caches.open(fetchable).then(function(cache) {
-        return cache.match(request).then(function (response) {
-          return response || fetch(request).then(function(response) {
-            if (response.ok) {
-              cache.put(request, response.clone());
+  event.respondWith(
+    caches.open(fetchable).then(function(cache) {
+      return cache.match(request).then(function(response) {
+        // Fetch or return cache
+        return fetch(request)
+          .then(function(resp) {
+            if (resp.ok) {
+              cache.put(request, resp.clone());
+              broadcastMessage(Date.now());
             }
-            return response;
-          }).catch((e) => {
-            return response;
+            return resp
           })
-        });
+          .catch(function(error) {
+            return response
+          })
+      }).catch(function(err) {
+        return response
       })
-    );
-  }
+    })
+  )
 });
+
+
+function broadcastMessage(message) {
+  clients.matchAll().then(clients => {
+    clients.forEach(client => {
+      client.postMessage(message);
+    })
+  })
+}

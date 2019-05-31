@@ -18,26 +18,21 @@ To check out the latest version, go to this link
 > 👍  done
 
 -   When posts are loading, show info ✍️
--   Add previous post button 😴
--   Change all images to svg components (see src/components/icons.js) ✍️
 -   Cleanup css to more dense file 😴
 -   Check if icons and splashscreens work, and if we could remove some
     😴
 -   Stop and start timer, depending on status (menu open, posts
     loading...) 😴
+-   Block timer when holding finger on screen 😴
 -   Style change on category type 😴
 -   When post type is video, go to youtube video 😴
 -   Add 'advertising', a header that shows an announcement or something
     😴
--   Images : ensure that all images are https, otherwise don't show them
-    😴
 -   Images : lazy loading, if possible ? 😴
 -   'serviceworker.js' : figure out how it works ✍️
--   Block timer when holding finger on screen 😴
 -   Load articles when offline (using api, means that there will be no
     links) 😴
--   Reload new posts on scroll up. 😴
--   Show status when offline 😴
+-   Reload new posts on scroll up. 😴v
 
 ## Version 0.1.0 - Alpha
 
@@ -51,8 +46,11 @@ app. Nothing fancy there, just the foundations.
 -   [0.1.3] Service worker, load when offline; Custom UI (sections and
     social links)
 -   [0.1.4] Remove he.js, too heavy
--   [0.1.5] Prevent https requests and separate ui categories to all
-    categories 
+-   [0.1.5] Images : ensure that all images are https, otherwise don't
+    show them 👍  + update categories to all categories or ui categories
+-   [0.1.6] Add previous post button 👍  Change all images to svg
+    components (see src/components/icons.js) 👍  
+-   [0.1.7] Show status when offline 👍
 
 * * *
 
@@ -64,6 +62,8 @@ resources for serviceworker
 <https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0>
 
 <https://appsco.pe/> : showcasing PWAs
+
+<https://codelabs.developers.google.com/codelabs/your-first-pwapp/#6>
 
 ## Performance tests
 
