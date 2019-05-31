@@ -1,6 +1,6 @@
 {
   "name": "topo-website-mobile",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "PWA of TOPO's website",
   "main": "index.js",
   "author": "Mark Spurgeon",

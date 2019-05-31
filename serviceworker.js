@@ -1,4 +1,4 @@
-let VERSION = "0.1.6-1";
+let VERSION = "0.1.7-0";
 
 let CACHES = {
   assets: 'assets-v'+VERSION,
