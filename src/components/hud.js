@@ -5,7 +5,7 @@ import { _setTimer, _switchToPost, SWITCH_MENU } from '../data';
 
 import Menu from './menu';
 import Brand from './brand';
-import Progress from './progress';
+import Timer from './timer';
 import {
   NextIcon,
   PreviousIcon,
@@ -66,23 +66,25 @@ const Hud = ({
 
   return (
     <div className="hud">
+
       <div className="navigation">
-        <a className="nav-previous" onClick={previousPost} title="Attends, fais voir l'autre">
+        <a className="previous" onClick={previousPost} title="Attends, fais voir l'autre">
           <PreviousIcon height={36} width={56} fill='rgba(200,200,200,0.6)' />
         </a>
-        <a className="nav-next" onClick={nextPost} title="Au suivant!">
+        <a className="next" onClick={nextPost} title="Au suivant!">
           <NextIcon height={36} width={56} fill='rgba(220,220,220,0.9)' />
         </a>
       </div>
-
-      <Brand />
 
       <div className="message" onClick={switchMenu} >
         {category || 'Derniers articles'}
       </div>
       <Status />
+
+      <Timer />
+      <Brand />
+
       <Menu />
-      <Progress />
     </div>
   );
 };

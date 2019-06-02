@@ -1,9 +1,15 @@
-$brand_red: #C30E00;
-$brand_red_dark: #BB0D00;
+$brand-red: #c30c00;
+$brand-red-dark: #bb0d00;
 
-$background: rgb(40,40,48);
-$progress_color: rgb(110,90,255);
+$background: rgb(40, 40, 48);
 
 
-$online: rgb(100,215,140);
-$offline: rgb(255,30,40);
+// HUD
+
+$timer-background: rgba(40, 40, 40, 0.1);
+$timer-colour: rgb(110, 90, 255);
+
+$online: rgb(100, 215, 140);
+$offline: rgb(255, 30, 40);
+
+$navigation-background: linear-gradient(transparent, rgba(30, 30, 30, 0.6));

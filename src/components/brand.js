@@ -8,13 +8,11 @@ import { Logo } from './icons';
 
 
 const Brand = ({ switchMenu, isMenu }) => (
-    <div className={(isMenu) ? 'watermark menu' : 'watermark'} onClick={switchMenu}>
+    <div className={(isMenu) ? 'brand menu' : 'brand'} onClick={switchMenu}>
       <div className="logo">
-        <div className="background">
-        </div>
         <Logo width={200} height={100} fill='white'/>
       </div>
-      <div className="brand">
+      <div className="text">
         <div className="background"></div>
         <span>Topolitique.ch</span>
       </div>
