@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { disableBodyScroll } from 'body-scroll-lock';
 
 import Posts from './posts';
 
@@ -14,19 +13,13 @@ const Loading = () => (
 
 
 const App = ({ posts }) => {
-  const targetRef = React.createRef();
-  const targetElement = targetRef.current;
-
-  // PROBLEM: works only on desktop
-  disableBodyScroll(targetElement);
-
   let items = <Loading />;
   if (posts.length > 0) {
     items = <Posts />;
   }
 
   return (
-    <div className="container" ref={targetElement}>
+    <div className="container">
       {items}
       <div className="post-as-container" id={`post-${items.length + 1}`}></div>
     </div>
