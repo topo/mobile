@@ -166,7 +166,7 @@
     .pin.offline { background: $offline; }
   }
 
-  #menu {
+  #_menu {
     background: #fff;
     height: 0%;
     left: 0;
@@ -195,7 +195,7 @@
       }
     }
 
-    .menu-container {
+    ._menu-container {
       margin: 16pt;
 
       ul,
@@ -204,7 +204,7 @@
       }
     }
 
-    .menu-link {
+    ._menu-link {
       color: #000;
       display: block;
       font-size: 16pt;
@@ -214,7 +214,7 @@
       width: 100%;
     }
 
-    .social {
+    ._social {
       display: flex;
       flex-direction: row;
       height: 48pt;
@@ -228,7 +228,7 @@
     }
   }
 
-  #menu.active {
+  #_menu.active {
     height: 100%;
 
     .header-container {

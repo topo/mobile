@@ -18,7 +18,6 @@ To check out the latest version, go to this link
 > 👍  done
 
 -   When posts are loading, show info ✍️
--   Cleanup css to more dense file 😴
 -   Check if icons and splashscreens work, and if we could remove some
     😴
 -   Stop and start timer, depending on status (menu open, posts
@@ -26,7 +25,7 @@ To check out the latest version, go to this link
 -   Block timer when holding finger on screen 😴
 -   Style change on category type 😴
 -   When post type is video, go to youtube video 😴
--   Add 'advertising', a header that shows an announcement or something
+-   Add 'advertising', a 'post' that shows an announcement or something
     😴
 -   Images : lazy loading, if possible ? 😴
 -   'serviceworker.js' : figure out how it works ✍️
@@ -51,6 +50,7 @@ app. Nothing fancy there, just the foundations.
 -   [0.1.6] Add previous post button 👍  Change all images to svg
     components (see src/components/icons.js) 👍  
 -   [0.1.7] Show status when offline 👍
+-   [0.1.8] starting transition to emotion.js for styling ✍️
 
 * * *
 

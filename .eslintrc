@@ -8,7 +8,13 @@
   ],
   "rules": {
     "react/prop-types": 0,
-    "no-underscore-dangle": 0 // for actions
+    "no-underscore-dangle": 0,
+    "no-unused-vars": [
+      "error",
+      {
+        varsIgnorePattern: "React"
+      }
+    ]
   },
   "extends": [
     "plugin:react/recommended",

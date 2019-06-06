@@ -1,10 +1,14 @@
+/** @jsx jsx */
 import React from 'react';
 import { connect } from 'react-redux';
+import { jsx } from '@emotion/core';
 
 import {
   _updatePosts, _switchToCategory, _switchToPost, SWITCH_MENU,
 } from '../data';
 import { fetchPosts } from '../api';
+
+import styles from '../styles/menu';
 
 import {
   YouTubeIcon,
@@ -48,13 +52,15 @@ const SocialIcons = connect(
 )(SocialIconsContainer, 'SocialIcons');
 
 const Menu = ({
-  uiCategories, isMenu, switchMenu, switchToPost, switchToCategory, updatePosts,
+  categories, uiCategories, isMenu, switchMenu, switchToPost, switchToCategory, updatePosts,
 }) => {
   function changeCategories(e, cat) {
     e.preventDefault();
     updatePosts([]);
     if (cat.length === 1) {
       switchToCategory(cat[0].name);
+    } else {
+      switchToCategory(null);
     }
     switchMenu();
 
@@ -69,7 +75,7 @@ const Menu = ({
       const { name } = cat;
       const displayName = name;
       return (
-        <a className="menu-link" key={cat.id} title={cat.name} onClick={e => changeCategories(e, [cat])}>
+        <a className="link" key={cat.id} title={cat.name} onClick={e => changeCategories(e, [cat])}>
           {displayName}
         </a>
       );
@@ -78,12 +84,12 @@ const Menu = ({
   });
 
   return (
-    <div id="menu" className={(isMenu) ? 'active' : ''}>
+    <div id="menu" css={styles({ isMenu })}>
       <div className="header-container">
         <button onClick={switchMenu} title="Close menu">
           <CloseIcon width={46} height={46} fill={'#BB0D00'}/>
         </button>
-        <button onClick={e => changeCategories(e, uiCategories)} title="Home">
+        <button onClick={e => changeCategories(e, categories)} title="Home">
           <LatestIcon width={46} height={46} fill={'#BB0D00'}/>
         </button>
       </div>
@@ -100,6 +106,7 @@ const Menu = ({
 export default connect(
   state => ({
     isMenu: state.isMenu,
+    categories: state.categories,
     uiCategories: state.uiCategories,
   }),
   dispatch => ({

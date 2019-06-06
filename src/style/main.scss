@@ -94,7 +94,6 @@ a {
   color: #fff;
   display: inline;
   font-size: 18pt;
-  opacity: 0.3;
   text-decoration: none;
   text-shadow: 2px 2px 8px rgba(40, 40, 40, 0.6);
   transition: all 0.4s 0.2s;
@@ -103,20 +102,17 @@ a {
 
 .kicker {
   background: $brand-red;
-  -webkit-box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
   color: #fff;
 
   display: inline;
   font-size: 10pt;
   font-weight: 500;
   letter-spacing: 0.1rem;
-  opacity: 0.5;
   text-decoration: none;
   text-transform: uppercase;
+  padding-left: 2pt;
+  padding-right:2pt;
+  border-radius: 1pt;
   transition: all 0.3s 0.2s;
   white-space: pre-wrap;
 }

@@ -1,4 +1,10 @@
-let VERSION = "0.1.7-1";
+/*
+  Service Worker for TOPO's mobile PWA.
+  ----
+
+  Update version down bellow to update assets.
+*/
+let VERSION = "0.1.8-1";
 
 let CACHES = {
   assets: 'assets-v'+VERSION,
@@ -16,6 +22,7 @@ self.addEventListener('install', function(event) {
           '/assets/glasses.svg',
           '/assets/next.png',
           '/assets/square_192x192.png',
+          '/index.html'
         ]
       );
     })
