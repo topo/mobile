@@ -7,6 +7,7 @@ export default ({ online }) => (css`
     left:12pt;
     top:12pt;
     width:75%;
+    
     .category {
       margin:0;
       padding:0;

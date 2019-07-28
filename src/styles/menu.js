@@ -3,23 +3,24 @@ import { css } from '@emotion/core';
 import variables from './variables';
 
 
-export default ({ isMenu }) => {
+export default ({ menu }) => {
   let style = css`
-    display:none;
     position:fixed;
     left:0;
     right:0;
     top:0;
-    height:80%;
-    transition: height .4s ease-out;
+    height: 0px;
+    overflow:hidden;
+    transform: scale(1.1);
+    transition: transform .2s;
 
     .header-container {
       margin-left: 12pt;
       margin-right: 12pt;
-      margin-top: 12pt;
+      margin-top: 14pt;
       overflow: hidden;
-      padding: 0;
-      transition: padding 0.6s ease-out;
+      padding-top: 6pt;
+      padding-bottom: 6pt;
     }
 
     .header-container button {
@@ -86,17 +87,13 @@ export default ({ isMenu }) => {
       margin:0 auto;
     }
   `;
-  if (isMenu) {
+  if (menu) {
     style = css`
       ${style};
       display:block;
       background: white;
       height:100%;
-
-      .header-container {
-        padding-bottom: 6pt;
-        padding-top: 6pt;
-      }
+      transform: scale(1);
     `;
   }
   return style;

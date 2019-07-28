@@ -2,15 +2,17 @@ import { css } from '@emotion/core';
 
 import variables from './variables';
 
-export default ({ isMenu }) => {
+export default ({ isMenu, isPost }) => {
   let style = css`
-    position:absolute;
+    position:fixed;
     top:12pt;
     right:12pt;
     overflow:hidden;
-    border-radius:1.5pt;
+    border-radius:1pt;
     z-index:200;
-    transition: border-radius .3s;
+    tranform: scale(1);
+    transition: top .3s .1s, border-radius .3s, transform .2s .15s;
+
     .logo {
       width:72pt;
       height: 32pt;
@@ -27,15 +29,15 @@ export default ({ isMenu }) => {
     }
     .text {
       color:white;
-      font-size: 8pt;
+      font-size: 9pt;
+      line-height: 12pt;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.03em;
       max-height: 40pt;
       padding-bottom: 2pt;
       padding-top: 2pt;
       position: relative;
       text-align: center;
-      text-transform: uppercase;
       transition: all  0.40s;
     }
     .background {
@@ -54,6 +56,7 @@ export default ({ isMenu }) => {
       ${style};
 
       border-radius:3pt;
+      transform: scale(.9);
 
       .logo {
         padding-bottom:9pt
@@ -65,6 +68,13 @@ export default ({ isMenu }) => {
       .background {
         width:0%;
       }
+    `;
+  }
+
+  if (isPost) {
+    style = css`
+      ${style};
+      top: -64pt;
     `;
   }
   return style;

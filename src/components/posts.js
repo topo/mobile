@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+
+import { _switchToDisplayPost } from '../data';
 // Stolen from https://gist.github.com/gre/1650294
 /*eslint-disable */
 const easeOutCubic = (t) => { return (--t) * t * t + 1; }
@@ -54,11 +56,20 @@ const CoAuthors = ({coauthors}) => coauthors.map((author) => {
   );
 });
 
-const PostsContainer = ({ posts, activePost }) => posts.map((post, index) => {
+const PostsContainer = ({
+  posts, 
+  activePost, 
+  setDisplayPost,
+}) => posts.map((post, index) => {
 
   const id = `post-${index}`;
 
   if (activePost === index) { updateScroll(id); }
+
+  function choosePost(e, post) {
+    e.preventDefault()
+    setDisplayPost(post)
+  }
 
   return (
       <div
@@ -68,7 +79,7 @@ const PostsContainer = ({ posts, activePost }) => posts.map((post, index) => {
         style={ (post.image && post.image.startsWith('https://')) ? { backgroundImage: `url(${post.image})` } : null}>
 
         <div className="post-container">
-          <a className="post-content" href={post.link}>
+          <a className="post-content" onClick={(e) => choosePost(e, post)}>
             <h2 className="kicker">{post.meta.kicker}</h2>
             <br />
             <h1 className="title">{post.title.rendered}</h1>
@@ -89,4 +100,7 @@ export default connect(
     activePost: state.post,
     posts: state.posts,
   }),
+  dispatch => ({
+    setDisplayPost: (post) => dispatch(_switchToDisplayPost(post))
+  })
 )(PostsContainer, 'Posts');

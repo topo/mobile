@@ -7,6 +7,8 @@ export const UPDATE_UI_LAST_UPDATED = 'UPDATE_UI_LAST_UPDATED';
 export const SWITCH_TO_POST = 'SWITCH_TO_POST';
 export const SWITCH_TO_CATEGORY = 'SWITCH_TO_CATEGORY';
 export const SWITCH_MENU = 'SWITCH_MENU';
+export const SWITCH_TO_DISPLAY_POST = 'SWITCH_TO_DISPLAY_POST';
+
 export const SET_TIMER = 'SET_TIMER';
 
 export const _updatePosts = posts => ({
@@ -44,6 +46,16 @@ export const _switchToPost = id => ({
   id,
 });
 
+export const _switchToDisplayPost = post => ({
+  type: SWITCH_TO_DISPLAY_POST,
+  post,
+});
+
+export const _switchMenu = menu => ({
+  type: SWITCH_MENU,
+  menu,
+});
+
 export const _setTimer = timer => ({
   type: SET_TIMER,
   timer,
@@ -51,7 +63,7 @@ export const _setTimer = timer => ({
 
 const initial = {
   lastUpdated: null,
-  isMenu: false,
+  menu: false,
   category: null,
   post: 0,
   posts: [],
@@ -59,6 +71,7 @@ const initial = {
   uiCategories: [],
   social: {},
   timer: 0,
+  displayPost: null,
 };
 
 export const reducer = (state = initial, action) => {
@@ -101,12 +114,19 @@ export const reducer = (state = initial, action) => {
       return {
         ...state,
         category: action.category,
+        displayPost: null,
       };
 
     case SWITCH_MENU:
       return {
         ...state,
-        isMenu: !(state.isMenu),
+        menu: action.menu,
+      };
+
+    case SWITCH_TO_DISPLAY_POST:
+      return {
+        ...state,
+        displayPost: action.post,
       };
 
     case SET_TIMER:

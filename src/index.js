@@ -10,7 +10,7 @@ import {
   _updatePosts,
   _updateUISocial,
   _updateUICategories,
-  _updateUILastUpdated,
+  // _updateUILastUpdated,
   _updateCategories,
   _switchToPost,
   _setTimer,
@@ -29,7 +29,7 @@ import Hud from './components/hud';
 const theStore = createStore(reducer, undefined, applyMiddleware(thunkMiddleware));
 
 // Service worker
-if ('serviceWorker' in navigator) {
+/* if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('serviceworker.js', {
     useCache: true,
   }).then(
@@ -54,6 +54,7 @@ if ('serviceWorker' in navigator) {
   // eslint-disable-next-line no-console
   console.log("service worker doesn't seem to be permitted");
 }
+*/
 
 // Load data
 fetchCustomUserInterface().then((data) => {

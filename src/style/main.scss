@@ -107,11 +107,11 @@ a {
   display: inline;
   font-size: 10pt;
   font-weight: 500;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.02rem;
   text-decoration: none;
-  text-transform: uppercase;
-  padding-left: 2pt;
-  padding-right:2pt;
+  padding: 1pt;
+  padding-left: 4pt;
+  padding-right:4pt;
   border-radius: 1pt;
   transition: all 0.3s 0.2s;
   white-space: pre-wrap;

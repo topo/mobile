@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { jsx } from '@emotion/core';
 
 import {
-  _updatePosts, _switchToCategory, _switchToPost, SWITCH_MENU,
+  _updatePosts, _switchToCategory, _switchToPost, _switchMenu,
 } from '../data';
 import { fetchPosts } from '../api';
 
@@ -52,7 +52,13 @@ const SocialIcons = connect(
 )(SocialIconsContainer, 'SocialIcons');
 
 const Menu = ({
-  categories, uiCategories, isMenu, switchMenu, switchToPost, switchToCategory, updatePosts,
+  categories,
+  uiCategories,
+  menu,
+  switchMenu,
+  switchToPost,
+  switchToCategory,
+  updatePosts,
 }) => {
   function changeCategories(e, cat) {
     e.preventDefault();
@@ -62,7 +68,7 @@ const Menu = ({
     } else {
       switchToCategory(null);
     }
-    switchMenu();
+    switchMenu(false);
 
     fetchPosts({ categories: cat, noCache: true }).then((posts) => {
       updatePosts(posts);
@@ -84,13 +90,13 @@ const Menu = ({
   });
 
   return (
-    <div id="menu" css={styles({ isMenu })}>
+    <div id="menu" css={styles({ menu })}>
       <div className="header-container">
-        <button onClick={switchMenu} title="Close menu">
-          <CloseIcon width={46} height={46} fill={'#BB0D00'}/>
+        <button title="Close menu">
+          <CloseIcon width={40} height={40} fill={'#BB0D00'}/>
         </button>
         <button onClick={e => changeCategories(e, categories)} title="Home">
-          <LatestIcon width={46} height={46} fill={'#BB0D00'}/>
+          <LatestIcon width={40} height={40} fill={'#BB0D00'}/>
         </button>
       </div>
       <div className="menu-container">
@@ -105,13 +111,13 @@ const Menu = ({
 
 export default connect(
   state => ({
-    isMenu: state.isMenu,
+    menu: state.menu,
     categories: state.categories,
     uiCategories: state.uiCategories,
   }),
   dispatch => ({
     updatePosts: (posts) => { dispatch(_updatePosts(posts)); },
-    switchMenu: () => { dispatch({ type: SWITCH_MENU }); },
+    switchMenu: (value) => { dispatch(_switchMenu(value)); },
     switchToCategory: (category) => { dispatch(_switchToCategory(category)); },
     switchToPost: (post) => { dispatch(_switchToPost(post)); },
   }),

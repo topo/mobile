@@ -2,13 +2,13 @@ import { css } from '@emotion/core';
 
 import variables from './variables';
 
-export default ({ progress }) => (css`
+export default ({ progress, color }) => (css`
   position:fixed;
   top:4pt;
   left:12pt;
   right:12pt;
   height:3pt;
-  border-radius:2pt;
+  border-radius:1.5pt;
   overflow:hidden;
   background:${variables.blakeColor};
   #progress {
@@ -17,7 +17,7 @@ export default ({ progress }) => (css`
     left:0;
     bottom:0;
     width:${progress}%;
-    background:${variables.blueColor};
-    transition:width .3s;
+    background:${color || variables.blueColor};
+    transition:width .3s, background-color .8s;
   }
 `);
